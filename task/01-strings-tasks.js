@@ -22,13 +22,12 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-    //throw new Error('Not implemented');
-	return value1+value2;
+	return value1 + value2;
 }
 
 
 /**
- * Возвращает длинну строки
+ * Возвращает длину строки
  *
  * @param {string} value
  * @return {number}
@@ -39,11 +38,11 @@ function concatenateStrings(value1, value2) {
  *   ''      => 0
  */
 function getStringLength(value) {
-    throw new Error('Not implemented');
+    return value.length;
 }
 
 /**
- * Возвращает строку образованную на основе шаблона и входных параметров firstName и lastName.
+ * Возвращает строку, образованную на основе шаблона и входных параметров firstName и lastName.
  * Важно! Вместо использования конкатенации, используйте шаблоны :
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings
  *
@@ -56,7 +55,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-    throw new Error('Not implemented');
+	return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -70,7 +69,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    throw new Error('Not implemented');
+	return value.slice(7, -1);
 }
 
 
@@ -85,7 +84,7 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-    throw new Error('Not implemented');
+    return value.substring(0, 1);
 }
 
 /**
@@ -100,7 +99,7 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-    throw new Error('Not implemented');
+    return value.trim();
 }
 
 /**
