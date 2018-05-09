@@ -22,7 +22,7 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-	return value1 + value2;
+		return value1 + value2;
 }
 
 
@@ -55,7 +55,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-	return `Hello, ${firstName} ${lastName}!`;
+		return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -69,7 +69,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-	return value.slice(7, -1);
+		return value.slice(7, -1);
 }
 
 
@@ -114,12 +114,12 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-    throw new Error('Not implemented');
+    return value.repeat(count);
 }
 
 /**
- * Удаляет первую встретившуюся последовательность симвоов из строки
- * 
+ * Удаляет первую встретившуюся последовательность символов из строки
+ *
  * @param {string} str
  * @param {string} value
  * @return {string}
@@ -130,7 +130,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-    throw new Error('Not implemented');
+    return str.replace(value, '');
 }
 
 /**
@@ -145,7 +145,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    throw new Error('Not implemented');
+    return str.replace(/\<|\>/g, '')
 }
 
 
@@ -160,7 +160,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-    throw new Error('Not implemented');
+    return str.toUpperCase();
 }
 
 /**
@@ -174,7 +174,7 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-    throw new Error('Not implemented');
+		return str.split(';');
 }
 
 /**
@@ -201,7 +201,22 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
+		var newline = '\n';
+		var string = '┌';
+		var symbol = '─';
+		var empty = ' ';
+
+		//part 1
+		string = string + symbol.repeat(width - 2) + '┐' + newline;
+
+		//part 2
+		for (let i = height - 2; i > 0; i--) {
+				string = string + '│' + empty.repeat(width - 2) + '│' + newline;
+		}
+
+		//part 3
+		string = string + '└' + symbol.repeat(width - 2) + '┘' + newline;
+		return string;
 }
 
 
@@ -221,7 +236,16 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    throw new Error('Not implemented');
+    var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+ var newalphabet = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+		for (let i = 0; i < str.length; i++) {
+				var pos = alphabet.indexOf(str[i]);
+				if (pos != (-1)) {
+						str = str.replace(str[i], newalphabet[pos]);
+				}
+		}
+		return str;
+
 }
 
 /**
@@ -238,36 +262,47 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    throw new Error('Not implemented');
+    if (typeof value === 'string' || value instanceof String) {
+				return true
+		}
+		else {
+				return false;
+		}
 }
 
 
 /**
  * Возвращает id игровой карты
- * 
+ *
  * Исходная доска игровых карт представлена следующим порядком строк:
- * 
+ *
  *  'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
  *  'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
  *  'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
  *  'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'
- * 
- * (see https://en.wikipedia.org/wiki/Standard_52-card_deck)
+ *
+ * (see https://en.wikipedia.org/wiki/Standard_52-card_deck )
  * Function returns the zero-based index of specified card in the initial deck above.
- * 
+ *
  * @param {string} value
  * @return {number}
  *
  * @example
  *   'A♣' => 0
- *   '2♣' => 1 
+ *   '2♣' => 1
  *   '3♣' => 2
  *     ...
  *   'Q♠' => 50
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+		var cardssuit = ('♣', '♦', '♥', '♠');
+		var cardsrank = ('A','2','3','4','5','6','7','8','9','10','J','Q','K');
+
+		var num = cardsrank.indexOf(value.slice(0, -1));
+
+		num = num + (13 * cardssuit.indexOf(value[value.length - 1]));
+		return num;
 }
 
 
