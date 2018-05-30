@@ -237,14 +237,13 @@ function getRectangleString(width, height) {
  */
 function encodeToRot13(str) {
     var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
- var newalphabet = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+	var newalphabet = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+	var newstr = '';
 		for (let i = 0; i < str.length; i++) {
 				var pos = alphabet.indexOf(str[i]);
-				if (pos != (-1)) {
-						str = str.replace(str[i], newalphabet[pos]);
-				}
+				newstr += pos != (-1) ? newalphabet[pos] : str[i];
 		}
-		return str;
+		return newstr;
 
 }
 
@@ -296,12 +295,11 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-		var cardssuit = ('♣', '♦', '♥', '♠');
-		var cardsrank = ('A','2','3','4','5','6','7','8','9','10','J','Q','K');
-
+		var cardssuit = ["♣", "♦", "♥", "♠"];
+		var cardsrank = ["A", "2", "3", "4" ,"5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 		var num = cardsrank.indexOf(value.slice(0, -1));
 
-		num = num + (13 * cardssuit.indexOf(value[value.length - 1]));
+		num += 13 * cardssuit.indexOf(value[value.length - 1]);
 		return num;
 }
 
